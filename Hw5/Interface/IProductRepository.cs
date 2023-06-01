@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hw5.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace Hw5.Interface
 {
     public interface IProductRepository
     {
+        string AddProduct(Product product);
+
     }
 }
