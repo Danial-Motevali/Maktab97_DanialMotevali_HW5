@@ -1,4 +1,4 @@
-﻿namespace Hw5
+﻿namespace Hw5.UI
 {
     internal class Program
     {
