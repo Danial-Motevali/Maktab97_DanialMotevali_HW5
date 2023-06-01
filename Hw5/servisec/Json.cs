@@ -37,8 +37,33 @@ namespace Hw5.servisec
 
             File.AppendAllText(path, jsonToFile);
 
-            return $"file succesfully adde to {type}";
+            return $"file succesfully adde to {fileName}";
         }
-        
+        public static List<Product> ProductDeserialize()
+        {
+            var list = new List<Product>();
+            var file = File.ReadAllLines(pathToProduct);
+
+            foreach (var line in file)
+            {
+                var fileToJson = JsonConvert.DeserializeObject<Product>(line);
+                list.Add(fileToJson);
+            }
+
+            return list;
+        }
+        public static List<Stock> StockDeserialize()
+        {
+            var list = new List<Stock>();
+            var file = File.ReadAllLines(pathToStock);
+
+            foreach(var line in file)
+            {
+                var fileToJson = JsonConvert.DeserializeObject<Stock>(line);
+                list.Add(fileToJson);
+            }
+
+            return list;
+        }
     }
 }
