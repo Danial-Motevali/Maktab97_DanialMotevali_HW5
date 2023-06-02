@@ -3,13 +3,13 @@ using Hw5.Interface;
 
 namespace Hw5.UI
 {
-    // all codes,class,methods for adding product most check
     internal class Program
     {
         static void Main(string[] args)
         {
             ProductRepository productRe = new ProductRepository();
             Product newProduct = new Product();
+
             string? firstMenuInput;
             string? productmenu;
             string? addingProduct;
@@ -23,11 +23,12 @@ namespace Hw5.UI
                 if (firstMenuInput == "1") 
                 {
                     Console.Clear();
-                    Console.Write("---You are in product menu---\n--1.Adding Product\n-");
+                    Console.Write("---You are in product menu---\n--1.Adding Product/2.Get Product by Id\n-");
                     productmenu = Console.ReadLine();
 
                     if(productmenu == "1")
                     {
+                        Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.Write("warning: ");
                         Console.ForegroundColor= ConsoleColor.White;
@@ -38,6 +39,11 @@ namespace Hw5.UI
 
                         productRe.AddProduct(newProduct);
 
+                    }else if(productmenu == "2")
+                    {
+                        Console.Clear();
+                        Console.Write("Give me the produt id: ");
+                        productRe.GetProductById();
                     }
                 }
                 else if (firstMenuInput == "2") { }
