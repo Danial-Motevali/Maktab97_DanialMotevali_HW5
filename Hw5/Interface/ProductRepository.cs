@@ -12,7 +12,7 @@ namespace Hw5.Interface
 {
     public class ProductRepository : IProductRepository
     {
-        List<Product> products;
+        List<Product> produtList = new List<Product>();
         public string AddProduct(Product product)
         {
             string name = product.ProductName;
@@ -82,9 +82,9 @@ namespace Hw5.Interface
 
             foreach(var line in fileToJson)
             {
-                products.Add(line);
+                produtList.Add(line);
             }
-            return products;
+            return produtList;
         }
     }
 }
