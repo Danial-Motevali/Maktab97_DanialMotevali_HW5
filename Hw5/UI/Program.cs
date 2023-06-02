@@ -1,5 +1,6 @@
 ﻿using Hw5.Domain;
 using Hw5.Interface;
+using System.Drawing;
 
 namespace Hw5.UI
 {
@@ -24,7 +25,7 @@ namespace Hw5.UI
                 if (firstMenuInput == "1") 
                 {
                     Console.Clear();
-                    Console.Write("---You are in product menu---\n--1.Adding Product/2.Get Product by Id\n-");
+                    Console.Write("---You are in product menu---\n--1.Adding Product/2.Get Product by Id/3.Product list/4.Exit---\n-");
                     productmenu = Console.ReadLine();
 
                     if(productmenu == "1")
@@ -51,6 +52,31 @@ namespace Hw5.UI
 
                         Console.WriteLine(status);
                         Thread.Sleep(3000);
+                    }else if (productmenu == "3")
+                    {
+                        Console.Clear();
+                        var list = productRe.GetProductList();
+
+                        if(list.Count == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("you dont have any product!");
+                            Console.ForegroundColor= ConsoleColor.White;
+
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            foreach (var line in list)
+                            {
+                                Console.WriteLine($"Product Id: {line.ProductId} proudct name: {line.ProductName} product barcode : {line.Barcode}");
+                            }
+                            Console.ReadLine();
+                        }
+                    }
+                    else
+                    {
+                        continue;
                     }
                 }
                 else if (firstMenuInput == "2") { }
