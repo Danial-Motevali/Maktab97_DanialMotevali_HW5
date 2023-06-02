@@ -13,8 +13,8 @@ namespace Hw5.servisec
 {
     public static class Json
     {
-        private static string pathToProduct = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-        private static string pathToStock = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+        private static string pathToProduct = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Database\\ProductJson.json" ;
+        private static string pathToStock = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Database\\StockJson.json";
         public static string SerializeObject(object obj, string fileName)
         {
             string input = fileName.ToLower();

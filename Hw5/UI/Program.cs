@@ -3,6 +3,7 @@ using Hw5.Interface;
 
 namespace Hw5.UI
 {
+    // all codes,class,methods for adding product most check
     internal class Program
     {
         static void Main(string[] args)

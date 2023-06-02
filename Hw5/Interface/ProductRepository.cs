@@ -12,17 +12,21 @@ namespace Hw5.Interface
 {
     public class ProductRepository : IProductRepository
     {
-        Product newProduct = new Product();
         public string AddProduct(Product product)
         {
+            string name = product.ProductName;
             bool status = CheckProductName(product.ProductName);
 
             if (status)
             {
                 var id = GiveProductId();
-                int barcode = RandomNumberGenerator.GetInt32(12, 13);
+                int barcode = RandomNumberGenerator.GetInt32(100000000, 999999999);
 
-                var j = newProduct(id, product.ProductName, barcode);
+                var newProduct = new Product(id , name, barcode);
+
+                Json.SerializeObject(newProduct, "Product");
+
+                return "product added";
             }
             return "not valid name";
         }
@@ -40,7 +44,7 @@ namespace Hw5.Interface
         }
         public int GiveProductId ()
         {
-            int id = 0;
+            int id = 1;
             var fileTOJson = Json.ProductDeserialize();
             
             foreach(var line in fileTOJson)
