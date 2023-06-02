@@ -30,7 +30,7 @@ namespace Hw5.Interface
             }
             return "not valid name";
         }
-        public bool CheckProductName (string productName)
+        private bool CheckProductName (string productName)
         {
             string regexPattern = "[A-Z][a-z]{3,5}[_][0-9]{3}";
 
@@ -42,7 +42,7 @@ namespace Hw5.Interface
             }
             return false;
         }
-        public int GiveProductId ()
+        private int GiveProductId ()
         {
             int id = 1;
             var fileTOJson = Json.ProductDeserialize();
@@ -63,7 +63,16 @@ namespace Hw5.Interface
 
         public string GetProductById(int id)
         {
-            throw new NotImplementedException();
+            var fileToJson = Json.ProductDeserialize();
+            
+            foreach(var line in fileToJson)
+            {
+                if(line.ProductId == id)
+                {
+                    return $"your product is: {line.ProductName}";
+                }
+            }
+            return "no product found";
         }
 
         public List<Product> GetProductList()
