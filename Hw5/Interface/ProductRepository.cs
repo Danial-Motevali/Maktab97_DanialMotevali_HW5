@@ -77,7 +77,7 @@ namespace Hw5.Interface
 
         public List<Product> GetProductList()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
