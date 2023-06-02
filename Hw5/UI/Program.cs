@@ -13,6 +13,7 @@ namespace Hw5.UI
             string? firstMenuInput;
             string? productmenu;
             string? addingProduct;
+            int productId = 0;
 
             do 
             {
@@ -43,7 +44,13 @@ namespace Hw5.UI
                     {
                         Console.Clear();
                         Console.Write("Give me the produt id: ");
-                        productRe.GetProductById();
+                        productId = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine();
+                        
+                        var status = productRe.GetProductById(productId);
+
+                        Console.WriteLine(status);
+                        Thread.Sleep(3000);
                     }
                 }
                 else if (firstMenuInput == "2") { }
