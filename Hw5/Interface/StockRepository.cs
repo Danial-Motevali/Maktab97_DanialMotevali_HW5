@@ -27,8 +27,11 @@ namespace Hw5.Interface
                 try
                 {
                     int stockId = StockServisec.StockId(productInStock);
-                  
-                    var j = new Stock(stockId,);
+                    string name = StockServisec.FindProductName(productInStock);
+                    int quntity = StockServisec.GetQuantity(productInStock);
+                    int price = StockServisec.GetPrice(productInStock);
+
+                    var j = new Stock(stockId,name,productInStock.ProductId, quntity, price);
                 }catch (Exception ex)
                 {
                     throw new Exception();
