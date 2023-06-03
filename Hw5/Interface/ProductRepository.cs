@@ -12,7 +12,6 @@ namespace Hw5.Interface
 {
     public class ProductRepository : IProductRepository
     {
-        List<Product> produtList = new List<Product>();
         public string AddProduct(Product product)
         {
             string name = product.ProductName;
@@ -78,6 +77,8 @@ namespace Hw5.Interface
 
         public List<Product> GetProductList()
         {
+            List<Product> produtList = new List<Product>();
+
             var fileToJson = Json.ProductDeserialize();
 
             foreach(var line in fileToJson)
