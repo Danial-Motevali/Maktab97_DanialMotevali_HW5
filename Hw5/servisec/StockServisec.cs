@@ -24,15 +24,15 @@ namespace Hw5.servisec
             }
             return id;
         }
-        public static string FindProductName(Stock stock)
+        public static string FindProductName(int id)
         {
-            var fileToJson = Json.StockDeserialize();
+            var fileToJson = Json.ProductDeserialize();
 
             foreach(var line in fileToJson)
             {
-                if (stock.Name == line.Name)
+                if (id == line.ProductId)
                 {
-                    return line.Name;
+                    return line.ProductName;
                 }
             }
             return "";
