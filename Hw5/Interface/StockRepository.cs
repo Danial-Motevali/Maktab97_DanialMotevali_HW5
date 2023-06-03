@@ -12,19 +12,29 @@ namespace Hw5.Interface
     {
         public string BuyProduct(Stock productInStock)
         {
-            var fileToJson = Json.StockDeserialize;
+            var fileToJson = Json.StockDeserialize();
 
-            var g = (from j in fileToJson()
-                    where j.ProductId == productInStock.ProductId
-                    select j).Any();
+            var status = (from product in fileToJson
+                         where product.ProductId == productInStock.ProductId
+                         select product).Any();
 
-            if (g)
+            if (status)
             {
-                return "okey";
-            }
-            return "not okey";
-        }
 
+            }
+            else
+            {
+                try
+                {
+                    int stockId = StockServisec.StockId(productInStock);
+                    var j = new Stock(stockId);
+                }catch (Exception ex)
+                {
+                    throw new Exception();
+                }
+            }
+            return "hello";
+        }
 
         public List<Stock> GetSalesProductList()
         {

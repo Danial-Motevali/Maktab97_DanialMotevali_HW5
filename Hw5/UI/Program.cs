@@ -108,19 +108,17 @@ namespace Hw5.UI
                         {
                             foreach (var line in list)
                             {
-                                Console.WriteLine($"Product Id: {line.ProductId} proudct name: {line.ProductName} product barcode : {line.Barcode}");
+                                Console.WriteLine($"Product Id: {line.ProductId} proudct name: {line.ProductName} product barcode : {line.Barcode}\n");
                             }
-                            Console.ReadLine();
                         }
-                        Console.WriteLine();
 
                         Console.Write("give me the id of product you want: ");
                         stockInProduct = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("how much? ");
+                        Console.Write("how much? ");
                         productQuantity = Convert.ToInt32(Console.ReadLine());
 
                         var newStock = new Stock(0, "", stockInProduct, productQuantity, 0);
-
+                        
                         var buyProduct = stockRe.BuyProduct(newStock);
 
                         Console.WriteLine(buyProduct);
