@@ -118,7 +118,7 @@ namespace Hw5.UI
 
                         var newStock = new Stock(0, "", stockInProduct, 0, 0);
 
-                        var buyProduct = stockRe.BuyProduct;
+                        var buyProduct = stockRe.BuyProduct(newStock);
 
                         Console.WriteLine(buyProduct);
                         Thread.Sleep(2000);

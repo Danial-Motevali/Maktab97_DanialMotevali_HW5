@@ -1,4 +1,5 @@
 ﻿using Hw5.Domain;
+using Hw5.servisec;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,19 @@ namespace Hw5.Interface
     {
         public string BuyProduct(Stock productInStock)
         {
-            throw new NotImplementedException();
+            var fileToJson = Json.StockDeserialize;
+
+            var g = (from j in fileToJson()
+                    where j.ProductId == productInStock.ProductId
+                    select j).Any();
+
+            if (g)
+            {
+                return "okey";
+            }
+            return "not okey";
         }
+
 
         public List<Stock> GetSalesProductList()
         {
