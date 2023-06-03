@@ -20,6 +20,7 @@ namespace Hw5.UI
             string? stockmenu;
             int stockInProduct;
             int productId = 0;
+            int productQuantity = 0;
             do 
             {
                 Console.Clear();
@@ -115,8 +116,10 @@ namespace Hw5.UI
 
                         Console.Write("give me the id of product you want: ");
                         stockInProduct = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("how much? ");
+                        productQuantity = Convert.ToInt32(Console.ReadLine());
 
-                        var newStock = new Stock(0, "", stockInProduct, 0, 0);
+                        var newStock = new Stock(0, "", stockInProduct, productQuantity, 0);
 
                         var buyProduct = stockRe.BuyProduct(newStock);
 
