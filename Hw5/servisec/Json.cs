@@ -41,29 +41,29 @@ namespace Hw5.servisec
         }
         public static List<Product> ProductDeserialize()
         {
-            var list = new List<Product>();
+            var listProduct = new List<Product>();
             var file = File.ReadAllLines(pathToProduct);
 
             foreach (var line in file)
             {
                 var fileToJson = JsonConvert.DeserializeObject<Product>(line);
-                list.Add(fileToJson);
+                listProduct.Add(fileToJson);
             }
 
-            return list;
+            return listProduct;
         }
         public static List<Stock> StockDeserialize()
         {
-            var list = new List<Stock>();
+            var listStock = new List<Stock>();
             var file = File.ReadAllLines(pathToStock);
 
             foreach(var line in file)
             {
                 var fileToJson = JsonConvert.DeserializeObject<Stock>(line);
-                list.Add(fileToJson);
+                listStock.Add(fileToJson);
             }
 
-            return list;
+            return listStock;
         }
     }
 }
