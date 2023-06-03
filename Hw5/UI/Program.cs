@@ -1,6 +1,8 @@
 ﻿using Hw5.Domain;
 using Hw5.Interface;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Xml.Linq;
 
 namespace Hw5.UI
 {
@@ -9,13 +11,15 @@ namespace Hw5.UI
         static void Main(string[] args)
         {
             ProductRepository productRe = new ProductRepository();
+            StockRepository stockRe = new StockRepository();
             Product newProduct = new Product();
 
             string? firstMenuInput;
             string? productmenu;
             string? addingProduct;
+            string? stockmenu;
+            int stockInProduct;
             int productId = 0;
-
             do 
             {
                 Console.Clear();
@@ -79,7 +83,47 @@ namespace Hw5.UI
                         continue;
                     }
                 }
-                else if (firstMenuInput == "2") { }
+                else if (firstMenuInput == "2") 
+                {
+                    Console.Clear();
+                    Console.WriteLine("---You are in Stock menu---");
+                    Console.Write("--1.Buy product/\n-");
+                    stockmenu = Console.ReadLine();
+                    
+                    if(stockmenu == "1")
+                    {
+                        var list = productRe.GetProductList();
+
+                        Console.Clear();
+                        if (list.Count == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("you dont have any product!");
+                            Console.ForegroundColor = ConsoleColor.White;
+
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            foreach (var line in list)
+                            {
+                                Console.WriteLine($"Product Id: {line.ProductId} proudct name: {line.ProductName} product barcode : {line.Barcode}");
+                            }
+                            Console.ReadLine();
+                        }
+                        Console.WriteLine();
+
+                        Console.Write("give me the id of product you want: ");
+                        stockInProduct = Convert.ToInt32(Console.ReadLine());
+
+                        var newStock = new Stock(0, "", stockInProduct, 0, 0);
+
+                        var buyProduct = stockRe.BuyProduct;
+
+                        Console.WriteLine(buyProduct);
+                        Thread.Sleep(2000);
+                    }
+                }
                 else
                 {
                     Console.WriteLine("not valid input");
