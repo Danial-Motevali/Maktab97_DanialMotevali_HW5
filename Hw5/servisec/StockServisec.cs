@@ -23,5 +23,18 @@ namespace Hw5.servisec
             }
             return id;
         }
+        public static string FindProductName(Stock stock)
+        {
+            var fileToJson = Json.StockDeserialize();
+
+            foreach(var line in fileToJson)
+            {
+                if (stock.Name == line.Name)
+                {
+                    return line.Name;
+                }
+            }
+            return "";
+        }
     }
 }
