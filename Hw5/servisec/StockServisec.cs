@@ -13,7 +13,33 @@ namespace Hw5.servisec
     public static class StockServisec
     {
         private static string pathToStock = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Database\\StockJson.json";
+        public static int GiveStockId()
+        {
+            int id = 1;
+            var lines = Json.StockDeserialize();
 
+            foreach(var line in lines)
+            {
+                if(line.StockId == id)
+                {
+                    id++;
+                }
+            }
+            return id;
+        }
+        public static string FindProductName(int id)
+        {
+            var lines = Json.ProductDeserialize();
+
+            foreach(var line in lines)
+            {
+                if(line.ProductId == id)
+                {
+                    return line.ProductName;
+                }
+            }
+            throw new Exception();
+        }
         public static int CheckProductQuantity(int productId)
         {
             var lines = Json.StockDeserialize();

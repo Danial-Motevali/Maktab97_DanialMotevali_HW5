@@ -118,7 +118,7 @@ namespace Hw5.UI
                         stockInProduct = Convert.ToInt32(Console.ReadLine());
                         Console.Write("how much? ");
                         productQuantity = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("product price: ");
+                        Console.Write("product price: ");
                         productPrice = Convert.ToInt32(Console.ReadLine());
 
                         var newStock = new Stock(0, "", stockInProduct, productQuantity, productPrice);
