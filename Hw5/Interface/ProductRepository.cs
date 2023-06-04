@@ -12,15 +12,14 @@ namespace Hw5.Interface
 {
     public class ProductRepository : IProductRepository
     {
-        List<Product> produtList = new List<Product>();
         public string AddProduct(Product product)
         {
             string name = product.ProductName;
-            bool status = CheckProductName(product.ProductName);
+            bool status = ProductServisec.CheckProductName(product.ProductName);
 
             if (status)
             {
-                var id = GiveProductId();
+                var id = ProductServisec.GiveProductId();
                 int barcode = RandomNumberGenerator.GetInt32(100000000, 999999999);
 
                 var newProduct = new Product(id , name, barcode);
@@ -31,36 +30,6 @@ namespace Hw5.Interface
             }
             return "not valid name";
         }
-        private bool CheckProductName (string productName)
-        {
-            string regexPattern = "[A-Z][a-z]{3,5}[_][0-9]{3}";
-
-            bool status = Regex.IsMatch(productName, regexPattern);
-
-            if (status)
-            {
-                return true;
-            }
-            return false;
-        }
-        private int GiveProductId ()
-        {
-            int id = 1;
-            var fileTOJson = Json.ProductDeserialize();
-            
-            foreach(var line in fileTOJson)
-            {
-                if(line.ProductId == id)
-                {
-                    id++;
-                }
-                else
-                {
-                    return id;
-                }
-            }
-            return id;
-        }
 
         public string GetProductById(int id)
         {
@@ -70,7 +39,7 @@ namespace Hw5.Interface
             {
                 if(line.ProductId == id)
                 {
-                    return $"your product is: {line.ProductName}";
+                    return line.ProductName;
                 }
             }
             return "no product found";
@@ -78,6 +47,8 @@ namespace Hw5.Interface
 
         public List<Product> GetProductList()
         {
+            List<Product> produtList = new List<Product>();
+
             var fileToJson = Json.ProductDeserialize();
 
             foreach(var line in fileToJson)

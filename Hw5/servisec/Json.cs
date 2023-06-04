@@ -15,6 +15,7 @@ namespace Hw5.servisec
     {
         private static string pathToProduct = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Database\\ProductJson.json" ;
         private static string pathToStock = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Database\\StockJson.json";
+        private static string pathToGetSalesProductList = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Database\\GetSalesProductList.txt";
         public static string SerializeObject(object obj, string fileName)
         {
             string input = fileName.ToLower();
@@ -30,6 +31,10 @@ namespace Hw5.servisec
             {
                 path = pathToStock;
             }
+            else if(input == "list")
+            {
+                path = pathToGetSalesProductList;
+            }
             else //need workd!!!
             {
                 throw new Exception("not valid!");
@@ -41,29 +46,29 @@ namespace Hw5.servisec
         }
         public static List<Product> ProductDeserialize()
         {
-            var list = new List<Product>();
+            var listProduct = new List<Product>();
             var file = File.ReadAllLines(pathToProduct);
 
             foreach (var line in file)
             {
                 var fileToJson = JsonConvert.DeserializeObject<Product>(line);
-                list.Add(fileToJson);
+                listProduct.Add(fileToJson);
             }
 
-            return list;
+            return listProduct;
         }
         public static List<Stock> StockDeserialize()
         {
-            var list = new List<Stock>();
+            var listStock = new List<Stock>();
             var file = File.ReadAllLines(pathToStock);
 
             foreach(var line in file)
             {
                 var fileToJson = JsonConvert.DeserializeObject<Stock>(line);
-                list.Add(fileToJson);
+                listStock.Add(fileToJson);
             }
 
-            return list;
+            return listStock;
         }
     }
 }

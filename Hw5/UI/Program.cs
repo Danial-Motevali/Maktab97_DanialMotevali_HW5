@@ -1,6 +1,8 @@
 ﻿using Hw5.Domain;
 using Hw5.Interface;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Xml.Linq;
 
 namespace Hw5.UI
 {
@@ -9,12 +11,17 @@ namespace Hw5.UI
         static void Main(string[] args)
         {
             ProductRepository productRe = new ProductRepository();
+            StockRepository stockRe = new StockRepository();
             Product newProduct = new Product();
 
             string? firstMenuInput;
             string? productmenu;
             string? addingProduct;
+            string? stockmenu;
+            int stockInProduct;
             int productId = 0;
+            int productQuantity = 0;
+            int productPrice = 0;
 
             do 
             {
@@ -79,7 +86,65 @@ namespace Hw5.UI
                         continue;
                     }
                 }
-                else if (firstMenuInput == "2") { }
+                else if (firstMenuInput == "2") 
+                {
+                    Console.Clear();
+                    Console.WriteLine("---You are in Stock menu---");
+                    Console.Write("--1.Buy product/2.sale product/3.Stock List/Exite\n-");
+                    stockmenu = Console.ReadLine();
+                    
+                    if(stockmenu == "1")
+                    {
+                        var list = productRe.GetProductList();
+
+                        Console.Clear();
+                        if (list.Count == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("you dont have any product!");
+                            Console.ForegroundColor = ConsoleColor.White;
+
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            foreach (var line in list)
+                            {
+                                Console.WriteLine($"Product Id: {line.ProductId} proudct name: {line.ProductName} product barcode : {line.Barcode}\n");
+                            }
+                        }
+
+                        Console.Write("give me the id of product you want: ");
+                        stockInProduct = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("how much? ");
+                        productQuantity = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("product price: ");
+                        productPrice = Convert.ToInt32(Console.ReadLine());
+
+                        var newStock = new Stock(0, "", stockInProduct, productQuantity, productPrice);
+                        
+                        var buyProduct = stockRe.BuyProduct(newStock);
+
+                        Console.WriteLine(buyProduct);
+                        Thread.Sleep(2000);
+                    }else if (stockmenu == "2") 
+                    {
+                    }else if (stockmenu == "3")
+                    {
+                        var lines = stockRe.GetSalesProductList();
+
+                        foreach(var line in lines)
+                        {
+                            Console.WriteLine(line.Name);
+                        }
+                        Console.ReadLine();
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+                }
                 else
                 {
                     Console.WriteLine("not valid input");
