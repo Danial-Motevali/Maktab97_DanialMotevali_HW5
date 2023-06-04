@@ -42,7 +42,17 @@ namespace Hw5.Interface
 
         public List<Stock> GetSalesProductList()
         {
-            throw new NotImplementedException();
+            var lines = Json.StockDeserialize();
+            List<Stock> result = new List<Stock>();
+
+            foreach(var line in lines)
+            {
+                result.Add(line);
+            }
+
+
+
+            return result;
         }
 
         public string SaleProduct(int productId, int cnt)

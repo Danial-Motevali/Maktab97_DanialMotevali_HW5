@@ -90,7 +90,7 @@ namespace Hw5.UI
                 {
                     Console.Clear();
                     Console.WriteLine("---You are in Stock menu---");
-                    Console.Write("--1.Buy product/\n-");
+                    Console.Write("--1.Buy product/2.sale product/3.Stock List/Exite\n-");
                     stockmenu = Console.ReadLine();
                     
                     if(stockmenu == "1")
@@ -127,7 +127,23 @@ namespace Hw5.UI
 
                         Console.WriteLine(buyProduct);
                         Thread.Sleep(2000);
+                    }else if (stockmenu == "2") 
+                    {
+                    }else if (stockmenu == "3")
+                    {
+                        var lines = stockRe.GetSalesProductList();
+
+                        foreach(var line in lines)
+                        {
+                            Console.WriteLine(line.Name);
+                        }
+                        Console.ReadLine();
                     }
+                    else
+                    {
+                        continue;
+                    }
+
                 }
                 else
                 {

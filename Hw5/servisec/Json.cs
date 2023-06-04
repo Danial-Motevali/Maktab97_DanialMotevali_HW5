@@ -15,6 +15,7 @@ namespace Hw5.servisec
     {
         private static string pathToProduct = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Database\\ProductJson.json" ;
         private static string pathToStock = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Database\\StockJson.json";
+        private static string pathToGetSalesProductList = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + "\\Database\\GetSalesProductList.txt";
         public static string SerializeObject(object obj, string fileName)
         {
             string input = fileName.ToLower();
@@ -29,6 +30,10 @@ namespace Hw5.servisec
             }else if(input == "stock")
             {
                 path = pathToStock;
+            }
+            else if(input == "list")
+            {
+                path = pathToGetSalesProductList;
             }
             else //need workd!!!
             {
