@@ -15,11 +15,11 @@ namespace Hw5.Interface
         public string AddProduct(Product product)
         {
             string name = product.ProductName;
-            bool status = CheckProductName(product.ProductName);
+            bool status = ProductServisec.CheckProductName(product.ProductName);
 
             if (status)
             {
-                var id = GiveProductId();
+                var id = ProductServisec.GiveProductId();
                 int barcode = RandomNumberGenerator.GetInt32(100000000, 999999999);
 
                 var newProduct = new Product(id , name, barcode);
@@ -39,7 +39,7 @@ namespace Hw5.Interface
             {
                 if(line.ProductId == id)
                 {
-                    return $"your product is: {line.ProductName}";
+                    return line.ProductName;
                 }
             }
             return "no product found";
