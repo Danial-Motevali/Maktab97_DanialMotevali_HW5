@@ -28,6 +28,7 @@ namespace Hw5.servisec
             return 0;
         }
         public static int FindTargetLine(int id)
+
         {
             string[] lines = File.ReadAllLines(pathToStock);
 
@@ -40,6 +41,15 @@ namespace Hw5.servisec
                 }
             }
             return 0;
+        }
+        public static void OverWriting(int id, object product)
+        {
+            string objectToFile = JsonConvert.SerializeObject(product);
+            string[] lines = File.ReadAllLines(pathToStock);
+
+            lines[id] = objectToFile;
+
+            File.WriteAllLines(pathToStock, lines);
         }
     }
 }

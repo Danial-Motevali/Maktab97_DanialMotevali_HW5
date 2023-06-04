@@ -16,8 +16,8 @@ namespace Hw5.Interface
                 productInStock.ProductQuantity = newQuantity;
                 productInStock.ProductPrice = newProductPrice;
 
-                var target = FindTargetLine(productInStock.ProductId);
-                OverWriting(target, productInStock);
+                var target = StockServisec.FindTargetLine(productInStock.ProductId);
+                StockServisec.OverWriting(target, productInStock);
             }
             else
             {
