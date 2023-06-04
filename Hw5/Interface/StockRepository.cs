@@ -21,6 +21,8 @@ namespace Hw5.Interface
                 var newProductPrice = (productInStock.ProductPrice * quantity) + (productInStock.ProductPrice * productInStock.ProductQuantity) / newQuantity;
                 productInStock.ProductQuantity = newQuantity;
                 productInStock.ProductPrice = newProductPrice;
+                productInStock.Name = StockServisec.FindProductName(productInStock.ProductId);
+                productInStock.StockId = StockServisec.GiveStockId();
 
                 var target = StockServisec.FindTargetLine(productInStock.ProductId);
                 StockServisec.OverWriting(target, productInStock);
