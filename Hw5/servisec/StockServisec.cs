@@ -77,5 +77,18 @@ namespace Hw5.servisec
 
             File.WriteAllLines(pathToStock, lines);
         }
+        public static int Quantity(int productId)
+        {
+            var lines = Json.StockDeserialize();
+
+            foreach(var line in lines)
+            {
+                if(line.ProductId == productId)
+                {
+                    return line.ProductQuantity;
+                }
+            }
+            return -1;
+        }
     }
 }
