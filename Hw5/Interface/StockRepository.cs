@@ -57,7 +57,39 @@ namespace Hw5.Interface
 
         public string SaleProduct(int productId, int cnt)
         {
-            throw new NotImplementedException();
+            var oldQuantity = StockServisec.Quantity(productId);
+
+            if(oldQuantity > 0)
+            {
+                int newQuantity = oldQuantity - cnt;
+                if(newQuantity >= 0)
+                {
+                    var lines = Json.StockDeserialize();
+
+
+                    foreach (var line in lines)
+                    {
+                        if(line.ProductId == productId)
+                        {
+                            line.ProductQuantity = newQuantity;
+                            var newProductPrice = (line.ProductPrice * line.ProductQuantity) + (line.ProductPrice * line.ProductQuantity - cnt) / newQuantity;
+                            line.ProductPrice = newProductPrice;
+
+                            StockServisec.OverWriting(productId, line);
+                            return "product salesed"; 
+                        }
+                    }
+                    return "no product found";
+                }
+                else
+                {
+                    return "need more product!";
+                }
+            }
+            else
+            {
+                return "you dont have any products ";
+            }
         }
     }
 }
