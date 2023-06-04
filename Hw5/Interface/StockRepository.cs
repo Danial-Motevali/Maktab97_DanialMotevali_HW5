@@ -7,7 +7,22 @@ namespace Hw5.Interface
     {
         public string BuyProduct(Stock productInStock)
         {
-            
+            var quantity = StockServisec.CheckProductQuantity(productInStock.ProductId);
+
+            if(quantity != 0) 
+            {
+                var newQuantity = quantity + productInStock.ProductQuantity;
+                var newProductPrice = (productInStock.ProductPrice * quantity) + (productInStock.ProductPrice * productInStock.ProductQuantity) / newQuantity;
+                productInStock.ProductQuantity = newQuantity;
+                productInStock.ProductPrice = newProductPrice;
+
+                var target = FindTargetLine(productInStock.ProductId);
+                OverWriting(target, productInStock);
+            }
+            else
+            {
+
+            }
         }
 
         public List<Stock> GetSalesProductList()
