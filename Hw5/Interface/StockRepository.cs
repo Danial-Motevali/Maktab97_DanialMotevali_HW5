@@ -50,7 +50,7 @@ namespace Hw5.Interface
                 result.Add(line);
             }
 
-
+            Json.SerializeObject(result, "list");
 
             return result;
         }
