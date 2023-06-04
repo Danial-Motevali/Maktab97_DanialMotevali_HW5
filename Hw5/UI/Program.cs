@@ -127,9 +127,29 @@ namespace Hw5.UI
 
                         Console.WriteLine(buyProduct);
                         Thread.Sleep(2000);
-                    }else if (stockmenu == "2") 
+                    }
+                    else if (stockmenu == "2")
                     {
-                    }else if (stockmenu == "3")
+                        Console.Clear();
+                        var lines = stockRe.GetSalesProductList();
+                        int stockId = 0;
+                        int quantity = 0;
+
+                        foreach (var line in lines)
+                        {
+                            Console.Write(line.StockId + " " + line.Name);
+                        }
+
+                        Console.WriteLine();
+                        Console.Write("Give me the id of product you want to sale: ");
+                        stockId = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("How much do you want to sale: ");
+                        quantity = Convert.ToInt32(Console.ReadLine());
+
+                        var result = stockRe.SaleProduct(stockId, quantity);
+                        Console.WriteLine(result);
+                    }
+                    else if (stockmenu == "3")
                     {
                         var lines = stockRe.GetSalesProductList();
 
