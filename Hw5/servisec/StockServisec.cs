@@ -87,5 +87,27 @@ namespace Hw5.servisec
 
             return g.Sum();
         }
+        public static int Price(int id ,int cnt)
+        {
+            int price = 0;
+            var fileToJson = Json.StockDeserialize();
+
+            try
+            {
+                foreach (var line in fileToJson)
+                {
+                    if (line.ProductId == id)
+                    {
+                        price = (line.ProductPrice * line.ProductQuantity) + (line.ProductPrice * cnt) / line.ProductQuantity;
+                    }
+                }
+                return (price);
+            }
+            catch
+            {
+                return 0;
+            }
+            
+        }
     }
 }

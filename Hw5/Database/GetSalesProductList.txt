@@ -1,2 +1,2 @@
-
-[{"StockId":1,"Name":"Milk_123","ProductId":1,"ProductQuantity":2,"ProductPrice":1000}]
+{"StockId":1,"Name":"Milk_123","ProductId":1,"ProductQuantity":0,"ProductPrice":3000}
+{"StockId":2,"Name":"Milk_123","ProductId":1,"ProductQuantity":3,"ProductPrice":2000}
