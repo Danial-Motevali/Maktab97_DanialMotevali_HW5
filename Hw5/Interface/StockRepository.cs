@@ -71,12 +71,13 @@ namespace Hw5.Interface
                     {
                         if(line.ProductId == productId)
                         {
+                            var newProductPrice = StockServisec.Price(line.ProductId, cnt);
+
                             line.ProductQuantity = newQuantity;
-                            var newProductPrice = (line.ProductPrice * line.ProductQuantity) + (line.ProductPrice * line.ProductQuantity - cnt) / oldQuantity;
                             line.ProductPrice = newProductPrice;
 
                             StockServisec.OverWriting(productId, line);
-                            return "product salesed"; 
+                            return "product salded"; 
                         }
                     }
                     return "no product found";
