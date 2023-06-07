@@ -73,7 +73,7 @@ namespace Hw5.servisec
             string objectToFile = JsonConvert.SerializeObject(product);
             string[] lines = File.ReadAllLines(pathToStock);
 
-            lines[id] = objectToFile;
+            lines[id-1] = objectToFile;
 
             File.WriteAllLines(pathToStock, lines);
         }
