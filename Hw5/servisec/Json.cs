@@ -31,10 +31,6 @@ namespace Hw5.servisec
             {
                 path = pathToStock;
             }
-            else if(input == "list")
-            {
-                path = pathToGetSalesProductList;
-            }
             else //need workd!!!
             {
                 throw new Exception("not valid!");
@@ -69,6 +65,17 @@ namespace Hw5.servisec
             }
 
             return listStock;
+        }
+        public static void SalesProductList(List<Stock> stockList)
+        {
+            StreamWriter j = new StreamWriter(pathToGetSalesProductList);
+            
+            foreach( var line in stockList)
+            {
+                string json = JsonConvert.SerializeObject(line);
+                j.WriteLine(json);
+            }
+            j.Close();
         }
     }
 }

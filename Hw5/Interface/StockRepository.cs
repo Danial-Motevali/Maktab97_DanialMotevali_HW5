@@ -50,7 +50,7 @@ namespace Hw5.Interface
                 result.Add(line);
             }
 
-            Json.SerializeObject(result, "list");
+            Json.SalesProductList(result);
 
             return result;
         }
@@ -71,10 +71,8 @@ namespace Hw5.Interface
                     {
                         if(line.ProductId == productId)
                         {
-                            var newProductPrice = StockServisec.Price(line.ProductId, cnt);
 
                             line.ProductQuantity = newQuantity;
-                            line.ProductPrice = newProductPrice;
 
                             StockServisec.OverWriting(productId, line);
                             return "product salded"; 
