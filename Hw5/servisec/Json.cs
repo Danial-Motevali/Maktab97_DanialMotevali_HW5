@@ -40,7 +40,7 @@ namespace Hw5.servisec
                 throw new Exception("not valid!");
             }
 
-            File.AppendAllText(path, jsonToFile);
+            File.AppendAllText(path, jsonToFile + Environment.NewLine);
 
             return $"file succesfully adde to {fileName}";
         }
