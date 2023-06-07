@@ -143,7 +143,7 @@ namespace Hw5.UI
                         Console.WriteLine();
                         Console.Write("Give me the id of product you want to sale: ");
                         stockId = Convert.ToInt32(Console.ReadLine());
-                        Console.WriteLine("How much do you want to sale: ");
+                        Console.Write("How much do you want to sale: ");
                         quantity = Convert.ToInt32(Console.ReadLine());
 
                         var result = stockRe.SaleProduct(stockId, quantity);

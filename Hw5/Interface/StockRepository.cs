@@ -72,7 +72,7 @@ namespace Hw5.Interface
                         if(line.ProductId == productId)
                         {
                             line.ProductQuantity = newQuantity;
-                            var newProductPrice = (line.ProductPrice * line.ProductQuantity) + (line.ProductPrice * line.ProductQuantity - cnt) / newQuantity;
+                            var newProductPrice = (line.ProductPrice * line.ProductQuantity) + (line.ProductPrice * line.ProductQuantity - cnt) / oldQuantity;
                             line.ProductPrice = newProductPrice;
 
                             StockServisec.OverWriting(productId, line);
