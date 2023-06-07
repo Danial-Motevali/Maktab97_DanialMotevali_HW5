@@ -81,14 +81,11 @@ namespace Hw5.servisec
         {
             var lines = Json.StockDeserialize();
 
-            foreach(var line in lines)
-            {
-                if(line.ProductId == productId)
-                {
-                    return line.ProductQuantity;
-                }
-            }
-            return -1;
+            var g = from j in lines
+                    where j.ProductId == productId
+                    select j.ProductQuantity;
+
+            return g.Sum();
         }
     }
 }
